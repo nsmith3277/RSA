@@ -1,3 +1,20 @@
+The RSA encrpytion algorithm is great for security purposes on the web. It is used for sending and receiving private data.
+PRt 1 of my project generates keys that can be used for encryption/decryption. We create keys that encrypt and decrypt our data.
+Our keys are as follows:
+
+Public Key = (e, n)
+Private Key = (d, n)
+
+To calculate these keys, we need secure numbers that cannot be easily discovered. our d and our e are generated based on their 
+relative primality to n. To create these numbers, we need two very large prime numbers p and q.
+e must be relatively prime to phi(n), where phi(n) = (p-1) * (q-1). d is the modular inverse of e % n. 
+
+To calculate p and q, I randomly generate a large value for both, then use the Fermat test to test primality. 
+Since our Integer class is too small for practical key generation, I imported the Big Integer Library written by 
+Matt McCutchen(see below).
+
+
+
 
                             C++ Big Integer Library
                           (see ChangeLog for version)
