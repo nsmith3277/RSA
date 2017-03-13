@@ -1,9 +1,9 @@
-/***
-compile and run (in linux):
-g++ sha256.cpp main.cpp -o sha256_example && ./sha256_example
-Output:
-sha256('grape'): 0f78fcc486f5315418fbf095e71c0675ee07d318e5ac4d150050cd8e57966496
-**/
+/*RSA encryption algorithm part 2
+ * Author: Nicholas Smith
+ * Part 2 takes the generated keys from part 1 and 
+ * encrypts a message or verifies authenticity of 
+ * an already encrypted message.
+ */
 #include <fstream>
 #include <stdlib.h> 
 #include <iostream>
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 		string estring = "";
 		string encryptedMessage, messageSignature;
 	    /*We need the public key to decrypt our message 
-		 * so open our file and convert the key values to BigUnsigned */
+             * so open our file and convert the key values to BigUnsigned */
 		file.open("e_n.txt");
 		file >> estring;
 		file >> nstring;
