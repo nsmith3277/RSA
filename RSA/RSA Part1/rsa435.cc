@@ -1,3 +1,12 @@
+/*RSA Encryption algorithm
+ * Author: Nicholas Smith
+ * Using the Big Integer library, this program will generate 
+ * the keys (e, n) and (d, n) needed to encrypt and decrypt 
+ * messages from a text file. Using large prime numbers p and 
+ * q found using the fermat test, these prime numbers generate 
+ * the private key d and public key e in the range of n. 
+ */
+
 // Standard libraries
 #include <string>
 #include <iostream>
@@ -10,6 +19,7 @@
 
 using std::cout;
 using std::endl;
+
 
 bool Fermat(BigUnsigned);
 void pickPrime(BigUnsigned*);
@@ -58,6 +68,12 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
+/* Fermat is an algorithm used to test if a number is prime. 
+ * the formula states that we can pick a random a that makes 
+ * a^(p-1) % n = 1. If this is true, then p is most likely prime. 
+ * If it fails, we can say p definitely is not prime. Since a 
+ * can possibly be a fermat liar, we test 3 times.
+ */
 bool fermat(BigUnsigned p) { 
 	BigInteger a = BigInteger(2);
 	if (modexp(a, p - 1, p) != 1) {
@@ -73,7 +89,12 @@ bool fermat(BigUnsigned p) {
 	}
 	return true;
 }
-
+/* function call to randomly pick a very large number by calling 
+ * rand() * 10 two hundred times. We then call the fermat test function
+ * to test primality. If it fails, we must pick another number.
+ * If we are lucky, the function finds a prime within a few seconds. 
+ * On average it takes roughly 30-60 seconds to find a prime number.
+ */
 void pickPrime(BigUnsigned *p) {
 	bool isPrime = false;
 	do {
